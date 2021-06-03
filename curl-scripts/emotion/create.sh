@@ -8,7 +8,7 @@ curl "${API}${URL_PATH}" \
 --header "Authorization: Bearer ${TOKEN}" \
 --data '{
   "emotion": {
-    "name": "'"${NAME}"'",
+    "emotionName": "'"${EMOTIONNAME}"'",
     "description": "'"${DESCRIPTION}"'"
   }
 }'
