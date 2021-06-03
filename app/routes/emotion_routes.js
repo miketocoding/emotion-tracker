@@ -2,6 +2,7 @@
 const express = require('express')
 // requrie passport - authenticate middleware step
 const passport = require('passport')
+const mongoose = require('mongoose')
 
 // Create a router to group routes into a mini app
 const router = express.Router()
