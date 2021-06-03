@@ -47,12 +47,16 @@ router.get('/emotions', requireToken, (req, res, next) => {
 // UPDATE
 router.patch('/emotions/:id', requireToken, (req, res, next) => {
   delete req.body.emotion.owner
+  // get id of event from params
+  const id = req.params.id
+  // get emotion data from request
+  const emotionData = req.body.emotion
 
-  Emotion.findById(req.body.emotion.owner)
+  Emotion.findById(id)
     .then(handle404)
     .then(emotion => {
       requireOwnership(req, emotion)
-      return emotion.updateOne(req.body.emotion)
+      return emotion.updateOne(emotionData)
     })
     .then(() => { res.sendStatus(204) })
     .catch(next)
