@@ -39,7 +39,7 @@ router.get('/emotions/:id', requireToken, (req, res, next) => {
 // INDEX
 router.get('/emotions', requireToken, (req, res, next) => {
   // want to show all emotions but need to hide owner info
-  Emotion.Find({})
+  Emotion.find({})
     .then(emotions => res.json(emotions))
     .catch(next)
 })
