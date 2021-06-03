@@ -2,7 +2,7 @@
 const express = require('express')
 // requrie passport - authenticate middleware step
 const passport = require('passport')
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 
 // Create a router to group routes into a mini app
 const router = express.Router()
@@ -48,7 +48,7 @@ router.get('/emotions', requireToken, (req, res, next) => {
 router.patch('/emotions/:id', requireToken, (req, res, next) => {
   delete req.body.emotion.owner
 
-  Emotion.findById(req.body.event.owner)
+  Emotion.findById(req.body.emotion.owner)
     .then(handle404)
     .then(emotion => {
       requireOwnership(req, emotion)
