@@ -23,6 +23,7 @@ router.post('/emotions', requireToken, (req, res, next) => {
   // setting the value to be the ID of the user making the request
   req.body.emotion.owner = req.user._id
   Emotion.create(req.body.emotion)
+    .then(console.log('I made it to express backend'))
     .then(emotion => res.status(201).json({ emotion }))
     .catch(next)
 })
@@ -40,6 +41,7 @@ router.get('/emotions/:id', requireToken, (req, res, next) => {
 router.get('/emotions', requireToken, (req, res, next) => {
   // want to show all emotions but need to hide owner info
   Emotion.find({})
+    .then(console.log('I made it to index express backend'))
     .then(emotions => res.json(emotions))
     .catch(next)
 })
@@ -66,6 +68,7 @@ router.patch('/emotions/:id', requireToken, (req, res, next) => {
 router.delete('/emotions/:id', requireToken, (req, res, next) => {
   const id = req.params.id
   Emotion.findById(id)
+    .then(console.log('I made it to delete express backend'))
     .then(handle404)
     .then(emotion => requireOwnership(req, emotion))
     .then(emotion => emotion.deleteOne())
